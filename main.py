@@ -1,4 +1,4 @@
-#v3 with updated letter weights
+#v4 with fixed mid_index + better calculation
 from english_words import get_english_words_set
 
 letter_weights = {'a': 0, 'b': 1, 'c': 0, 'd': 1, 'e': 0, 'f': 1, 'g': 1, 'h': 1,
@@ -11,7 +11,7 @@ def calculate_center_of_mass(weights):
     mass_location_product_sum = sum(item['mass'] * item['index'] for item in weights)
     
     if total_mass == 0:
-        return None
+        return 0
 
     center_of_mass = mass_location_product_sum / total_mass
 
@@ -28,10 +28,17 @@ def string_to_weights(string, weight_map):
 
 
 def is_balanced(word, letter_weights):
-    mid_index = len(word) // 2
-    
+    mid_index = 0
+  
+    if len(word) % 2 != 0:
+        mid_index = len(word) // 2
+    else: 
+        mid_index = (len(word) / 2) - 0.5
+
     weights = string_to_weights(word, letter_weights)
-    return calculate_center_of_mass(weights) == mid_index
+    center_of_mass = calculate_center_of_mass(weights)
+    
+    return abs(center_of_mass - mid_index) < 1e-9
 
 
 def find_balanced_words(words):
