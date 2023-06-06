@@ -1,10 +1,10 @@
-#v2 which uses center of mass formula
+#v3 with updated letter weights
 from english_words import get_english_words_set
 
-letter_weights = {'a': 0, 'b': 1, 'c': 0, 'd': -1, 'e': 0, 'f': 1, 'g': -1, 'h': 1,
-                    'i': 1, 'j': 1, 'k': 1, 'l': 1, 'm': 0, 'n': 0, 'o': 0, 'p': -1,
-                    'q': -1, 'r': 1, 's': 1, 't': 1, 'u': 0, 'v': 0, 'w': 0, 'x': 0,
-                    'y': -1, 'z': 0}
+letter_weights = {'a': 0, 'b': 1, 'c': 0, 'd': 1, 'e': 0, 'f': 1, 'g': 1, 'h': 1,
+                    'i': 1, 'j': 1, 'k': 1, 'l': 1, 'm': 0, 'n': 0, 'o': 0, 'p': 1,
+                    'q': 1, 'r': 0, 's': 0, 't': 1, 'u': 0, 'v': 0, 'w': 0, 'x': 0,
+                    'y': 1, 'z': 0}
 
 def calculate_center_of_mass(weights):
     total_mass = sum(item['mass'] for item in weights)
